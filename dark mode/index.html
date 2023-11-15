@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Animated Dark Mode</title>
+  <style>
+    body {
+      transition: background-color 500ms;
+    }
+
+    .dark-mode {
+      background-color: #000;
+      color: #fff;
+    }
+
+    .fade-in {
+      animation: fade-in 500ms;
+    }
+
+    .fade-out {
+      animation: fade-out 500ms;
+    }
+
+    @keyframes fade-in {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes fade-out {
+      from {
+        opacity: 1;
+      }
+
+      to {
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <input type="checkbox" id="toggle">
+
+  <div id="content"></div>
+
+  <script>
+    const toggle = document.querySelector('#toggle');
+    const content = document.querySelector('#content');
+
+    toggle.addEventListener('change', () => {
+      if (toggle.checked) {
+        document.body.classList.add('dark-mode');
+
+        content.classList.add('fade-in');
+
+        setTimeout(() => {
+          content.classList.remove('fade-in');
+        }, 500);
+      } else {
+        document.body.classList.remove('dark-mode');
+
+        content.classList.add('fade-out');
+
+        setTimeout(() => {
+          content.classList.remove('fade-out');
+        }, 500);
+      }
+    });
+  </script>
+</body>
+</html>
